@@ -31,7 +31,7 @@ public class Scene {
 		parent.noFill();
 		parent.ellipseMode(parent.CENTER);
 
-		// draw the word line2
+		// draw the word line
 		parent.stroke(38, 133, 36);
 		parent.line(0, parent.height / 2, parent.width, parent.height / 2);
 
@@ -51,18 +51,25 @@ public class Scene {
 			}
 			
 			parent.stroke(0);
-			if(w instanceof Pronoun && w instanceof Subjecting){
-				if(((Pronoun) w).is_subject(board.words.get(i+1))){
+			
+			//check for pronouns associated to verbs
+			if(w instanceof Pronoun && w instanceof Subjecting && i < board.words.size()){
+				Word nextWord = board.words.get(i+1);
+				if(((Pronoun) w).is_subject(nextWord)){
 					parent.stroke(38, 133, 36);//paint it green
+					//draw a line from the subject to the verb
+					parent.line(w.pos.x+Config.wordSize/2, w.pos.y+Config.wordSize /2, 
+							nextWord.pos.x+Config.wordSize/2, nextWord.pos.y+Config.wordSize/2);
 				}
 			}
 			
 			parent.fill(200);
 			parent.rect(w.pos.x, w.pos.y, Config.wordSize, Config.wordSize);
+			
 			// draw the words from the tiles
 			parent.fill(0);
 			parent.text(w.word, w.pos.x + 10, w.pos.y + Config.wordSize / 2);
-			parent.text(String.valueOf(i), w.pos.x + 10, w.pos.y + Config.wordSize / 3);
+			//parent.text(String.valueOf(i), w.pos.x + 10, w.pos.y + Config.wordSize / 3);
 		}
 	}
 

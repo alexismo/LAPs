@@ -6,6 +6,7 @@ import java.util.Collections;
 import processing.core.PVector;
 
 import com.alexismorin.laps.mouse.MouseEvent;
+import com.alexismorin.laps.articles.The_Word;
 import com.alexismorin.laps.verbs.Eat_Word;
 import com.alexismorin.laps.words.Article;
 import com.alexismorin.laps.words.Noun;
@@ -29,7 +30,7 @@ public class Board {
 	public void makeWords() {
 		addWord( new Eat_Word() );
 		addWord( new I_Word() );
-		addWord( new Article("the") );
+		addWord( new The_Word() );
 		addWord( new Noun("apple") );
 	}
 
