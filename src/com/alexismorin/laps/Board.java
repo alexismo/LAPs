@@ -3,9 +3,12 @@ package com.alexismorin.laps;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import processing.core.PVector;
 
 import com.alexismorin.laps.mouse.MouseEvent;
+import com.alexismorin.laps.nouns.Apple_Word;
 import com.alexismorin.laps.articles.The_Word;
 import com.alexismorin.laps.verbs.Eat_Word;
 import com.alexismorin.laps.words.Article;
@@ -31,7 +34,7 @@ public class Board {
 		addWord( new Eat_Word() );
 		addWord( new I_Word() );
 		addWord( new The_Word() );
-		addWord( new Noun("apple") );
+		addWord( new Apple_Word() );
 	}
 
 	public void addWord(String word) {
@@ -46,6 +49,26 @@ public class Board {
 
 	public void checkSentence() {
 		words.sort();
+	}
+	
+	public String getSentence(){
+		String theSentence = "";
+		for (int i = 0; i < words.size(); i++) {
+			Word w = words.get(i);
+			String s = w.word;
+			
+			if(i == 0){//capitalize
+				s = WordUtils.capitalize(s);
+			}if(i == words.size()-1){//add period
+				theSentence += s;
+				theSentence += ".";
+			}else{
+				theSentence += s;
+				theSentence += " ";
+			}
+		}
+		
+		return theSentence;
 	}
 
 	public void onMouseEvent(MouseEvent e) {

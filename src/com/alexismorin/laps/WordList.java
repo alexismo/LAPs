@@ -27,4 +27,8 @@ public class WordList{
 	public void sort(){
 		Collections.sort(words, new WordPositionComparator());
 	}
+	
+	public ArrayList<Word> getList(){
+		return this.words;
+	}
 }

@@ -70,6 +70,9 @@ public class Scene {
 			parent.fill(0);
 			parent.text(w.word, w.pos.x + 10, w.pos.y + Config.wordSize / 2);
 			//parent.text(String.valueOf(i), w.pos.x + 10, w.pos.y + Config.wordSize / 3);
+			
+			//draw the Sentence
+			parent.text(board.getSentence(), parent.width/2, parent.height-100);
 		}
 	}
 
