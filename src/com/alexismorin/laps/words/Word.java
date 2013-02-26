@@ -21,6 +21,13 @@ public class Word extends Tile implements Comparable<Word>{
 		
 		return compareX - Math.round(this.pos.x);
 	}
+
+	public boolean do_grammar(Word prevWord, Word nextWord) {
+		/**
+		 * Override this as soon as possible.
+		 */
+		return true;
+	}
 }
 
 
