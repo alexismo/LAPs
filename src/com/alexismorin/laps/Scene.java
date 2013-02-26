@@ -58,20 +58,6 @@ public class Scene {
 
 			parent.stroke(0);
 
-			// check for pronouns associated to verbs
-			/*if (w instanceof Pronoun && w instanceof Subjecting
-					&& i < board.words.size() - 1) {// can't be the last word
-				Word nextWord = board.words.get(i + 1);
-				if (((Pronoun) w).is_subject(nextWord)) {
-					parent.stroke(38, 133, 36);// paint it green
-					// draw a line from the subject to the verb
-					parent.line(w.pos.x + Config.wordSize / 2, w.pos.y
-							+ Config.wordSize / 2, nextWord.pos.x
-							+ Config.wordSize / 2, nextWord.pos.y
-							+ Config.wordSize / 2);
-				}
-			}*/
-
 			if (w instanceof Grammar) {//if the word has specific grammar to it
 				Word prevWord = null;
 				Word nextWord = null;

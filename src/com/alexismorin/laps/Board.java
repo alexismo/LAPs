@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import processing.core.PApplet;
 import processing.core.PVector;
 
 import com.alexismorin.laps.mouse.MouseEvent;
@@ -20,14 +21,16 @@ import com.alexismorin.laps.words.pronouns.I_Word;
 
 public class Board {
 
+	PApplet parent;
 	WordList words;
-	
 	Dragger dragger;
+	
 
-	public Board() {
+	public Board(PApplet p) {
 		super();
+		this.parent = p;
 		this.words = new WordList();
-		dragger = new Dragger(this);
+		dragger = new Dragger(this, p);
 	}
 
 	public void makeWords() {
@@ -53,18 +56,21 @@ public class Board {
 	
 	public String getSentence(){
 		String theSentence = "";
-		for (int i = 0; i < words.size(); i++) {
+		for (int i = 0; i < words.size(); i++) {			
 			Word w = words.get(i);
-			String s = w.word;
 			
-			if(i == 0){//capitalize
-				s = WordUtils.capitalize(s);
-			}if(i == words.size()-1){//add period
-				theSentence += s;
-				theSentence += ".";
-			}else{
-				theSentence += s;
-				theSentence += " ";
+			if(w.snapped){
+				String s = w.word;
+				
+				if(i == 0){//capitalize
+					s = WordUtils.capitalize(s);
+				}if(i == words.size()-1){//add period
+					theSentence += s;
+					theSentence += ".";
+				}else{
+					theSentence += s;
+					theSentence += " ";
+				}
 			}
 		}
 		

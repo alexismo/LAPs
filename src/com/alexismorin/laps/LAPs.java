@@ -32,7 +32,7 @@ public class LAPs extends PApplet {
 	}
 
 	public void setupVariables() {
-		board = new Board();
+		board = new Board(this);
 		board.makeWords();
 
 		scene = new Scene(this, board);
