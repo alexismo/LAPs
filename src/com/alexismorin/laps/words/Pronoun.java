@@ -3,7 +3,7 @@ package com.alexismorin.laps.words;
 import com.alexismorin.laps.grammar.Grammar;
 import com.alexismorin.laps.grammar.Subjecting;
 
-public class Pronoun extends Word implements Subjecting, Grammar{
+public abstract class Pronoun extends Word implements Subjecting, Grammar{
 	public Pronoun(String word){
 		super(word);
 	}

@@ -43,7 +43,7 @@ public class WordList{
 	}
 	
 	public Word getPrevSnapped(int i) {//-1 for the PREVIOUS word
-		for(int j = i-1; j > 0; j--){
+		for(int j = i-1; j >= 0; j--){
 			Word w = words.get(j);
 			if(w.snapped)
 				return w;

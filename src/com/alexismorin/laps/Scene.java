@@ -58,33 +58,40 @@ public class Scene {
 
 			parent.stroke(0);
 
-			if (w instanceof Grammar && w.snapped) {//if the word has specific grammar to it
+			if (w instanceof Grammar && w.snapped) {// if the word has specific
+													// grammar to it and it's on
+													// the line
 				Word prevWord = null;
 				Word nextWord = null;
-				if(i < board.words.size()-1){
+				if (i < board.words.size() - 1) {
 					nextWord = board.words.getNextSnapped(i);
 				}
-				if(i > 0)
+				if (i > 0)
 					prevWord = board.words.getPrevSnapped(i);
-				
-				if ( w.do_grammar(prevWord, nextWord)){
+
+				if (w.do_grammar(prevWord, nextWord)) {
 					parent.stroke(38, 133, 36);// paint it green
 					// draw a line from the subject to the verb
-					parent.line(w.pos.x + Config.wordSize / 2, w.pos.y
-							+ Config.wordSize / 2 - 10, nextWord.pos.x
-							+ Config.wordSize / 2, nextWord.pos.y
-							+ Config.wordSize / 2 - 10);
-				}else{
+					//if (prevWord != null && nextWord != null)
+						/*
+						parent.line(w.pos.x + Config.wordSize / 2, w.pos.y
+								+ Config.wordSize / 2 - 10, nextWord.pos.x
+								+ Config.wordSize / 2, nextWord.pos.y
+								+ Config.wordSize / 2 - 10);
+					*/
+				} else {
 					parent.stroke(205, 24, 24);// paint it red
 				}
 			}
 
+			// finish drawing the tile
 			parent.fill(200);
 			parent.rect(w.pos.x, w.pos.y, Config.wordSize, Config.wordSize);
 
 			// draw the words from the tiles
 			parent.fill(0);
-			parent.text(w.word, w.pos.x + 10, w.pos.y + Config.wordSize / 2);
+			parent.text(w.getWord(), w.pos.x + 10, w.pos.y + Config.wordSize
+					/ 2);
 			// parent.text(String.valueOf(i), w.pos.x + 10, w.pos.y +
 			// Config.wordSize / 3);
 

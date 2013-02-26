@@ -4,7 +4,7 @@ import processing.core.PVector;
 
 public class Word extends Tile implements Comparable<Word>{
 
-	public String word;
+	private String word;
 
 	public Word(PVector pos, String word) {
 		super(pos);
@@ -13,6 +13,14 @@ public class Word extends Tile implements Comparable<Word>{
 
 	public Word(String word) {
 		this.word = word;
+	}
+	
+	public String getWord(){
+		return this.word;
+	}
+	
+	public void setWord(String newWord){//use this to set words for conjugation
+		this.word = newWord;
 	}
 	
 	@Override

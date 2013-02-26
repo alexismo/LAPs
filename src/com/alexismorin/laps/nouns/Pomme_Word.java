@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import com.alexismorin.laps.grammar.Actionnable;
 import com.alexismorin.laps.words.Noun;
 
-public class Apple_Word extends Noun implements Actionnable{
+public class Pomme_Word extends Noun implements Actionnable{
 
-	public Apple_Word() {
-		super("apple");
+	public Pomme_Word() {
+		super("pomme");
 	}
 
 	@Override
