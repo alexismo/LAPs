@@ -66,7 +66,7 @@ public class Dragger {
 	        target = -1;
 	        
 	        //check for new sentences
-	        parentBoard.checkSentence();
+	        parentBoard.sortSentence();
 	      }
 	      
 	      if(e.type == Config.MOUSE_DRAGGED){

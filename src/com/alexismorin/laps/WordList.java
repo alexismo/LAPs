@@ -31,4 +31,24 @@ public class WordList{
 	public ArrayList<Word> getList(){
 		return this.words;
 	}
+
+	public Word getNextSnapped(int i) {
+		for(int j = i+1; j < words.size(); j++){//+1 for the NEXT word
+			Word w = words.get(j);
+			if(w.snapped)
+				return w;
+		}
+		
+		return null;
+	}
+	
+	public Word getPrevSnapped(int i) {//-1 for the PREVIOUS word
+		for(int j = i-1; j > 0; j--){
+			Word w = words.get(j);
+			if(w.snapped)
+				return w;
+		}
+		
+		return null;
+	}
 }

@@ -23,13 +23,14 @@ public class Board {
 
 	PApplet parent;
 	WordList words;
+	ArrayList<Word> sentenceWords;
 	Dragger dragger;
 	
-
 	public Board(PApplet p) {
 		super();
 		this.parent = p;
 		this.words = new WordList();
+		this.sentenceWords = new ArrayList<Word>();
 		dragger = new Dragger(this, p);
 	}
 
@@ -50,8 +51,15 @@ public class Board {
 		words.add(w);
 	}
 
-	public void checkSentence() {
+	public void sortSentence() {
 		words.sort();
+		
+		/*sentenceWords.clear();
+		for(int i = 0; i < words.size(); i++){
+			Word w = words.get(i);
+			if(w.snapped)
+				sentenceWords.add(w);
+		}*/
 	}
 	
 	public String getSentence(){
