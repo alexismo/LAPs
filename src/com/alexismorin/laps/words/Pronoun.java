@@ -12,21 +12,6 @@ public abstract class Pronoun extends Word implements Subjecting, Grammar{
 	public boolean is_subject(Word followingWord) {
 		return followingWord instanceof Verb;
 	}
-
-	@Override
-	public boolean do_grammar(Word previousWord, Word nextWord) {
-		return is_subject(nextWord);
-	}
-
-	@Override
-	public boolean is_first_word() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean is_last_word() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
+	
 }

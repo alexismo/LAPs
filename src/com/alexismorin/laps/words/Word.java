@@ -36,6 +36,16 @@ public class Word extends Tile implements Comparable<Word>{
 		 */
 		return true;
 	}
+	
+	public boolean is_first_word() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean is_last_word() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 
 

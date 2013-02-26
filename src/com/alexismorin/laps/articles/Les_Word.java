@@ -7,10 +7,10 @@ import com.alexismorin.laps.grammar.IsArticle;
 import com.alexismorin.laps.words.Article;
 import com.alexismorin.laps.words.Word;
 
-public class La_Word extends Article implements Definiteness, GrammaticalGender, GrammaticalNumber {
+public class Les_Word extends Article implements Definiteness, GrammaticalNumber {
 
-	public La_Word() {
-		super("la");
+	public Les_Word() {
+		super("les");
 	}
 
 	@Override
@@ -19,12 +19,7 @@ public class La_Word extends Article implements Definiteness, GrammaticalGender,
 	}
 
 	@Override
-	public String gender() {
-		return "feminin";
-	}
-
-	@Override
 	public int number() {
-		return 1;
+		return 3;
 	}
 }
