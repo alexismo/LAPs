@@ -60,7 +60,10 @@ public class Board {
 		words.sort();
 	}
 
-	public String makeSentence() {
+	public Sentence makeSentence() {
+		/**
+		 * @returns a sentence object comprised of all the words on the main line, in order
+		 */
 		ArrayList<Word> newSentence = new ArrayList<Word>();
 		
 		for (int i = 0; i < words.size(); i++) {
@@ -73,7 +76,11 @@ public class Board {
 		
 		this.sentence.setWords(newSentence);
 
-		return this.sentence.getSentence();
+		return this.sentence;
+	}
+	
+	public String getSentenceString(){
+		return this.sentence.toString();
 	}
 
 	public void onMouseEvent(MouseEvent e) {

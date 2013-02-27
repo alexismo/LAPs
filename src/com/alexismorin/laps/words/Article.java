@@ -2,9 +2,11 @@ package com.alexismorin.laps.words;
 
 import com.alexismorin.laps.grammar.Grammar;
 import com.alexismorin.laps.grammar.IsArticle;
+import com.alexismorin.laps.grammar.LinkTo;
 
-public class Article extends Word implements Grammar, IsArticle{
-
+public class Article extends Word implements Grammar, IsArticle, LinkTo{
+	Word linkToThis;
+	
 	public Article(String word) {
 		super(word);
 	}
@@ -20,8 +22,12 @@ public class Article extends Word implements Grammar, IsArticle{
 	public boolean do_grammar(Word previousWord, Word nextWord) {
 		if(nextWord != null){
 			if(is_article(nextWord)){
+				grammarOK = true;
+				linkToThis = nextWord;
 				return true;
 			}else{
+				grammarOK = false;
+				linkToThis = null;
 				return false;
 			}
 		}
@@ -41,4 +47,8 @@ public class Article extends Word implements Grammar, IsArticle{
 		return false;
 	}
 
+	@Override
+	public Word linkToWord() {
+		return linkToThis;
+	}
 }

@@ -5,6 +5,7 @@ import processing.core.PVector;
 public class Word extends Tile implements Comparable<Word>{
 
 	private String word;
+	public boolean grammarOK;
 
 	public Word(PVector pos, String word) {
 		super(pos);

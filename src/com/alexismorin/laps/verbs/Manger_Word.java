@@ -37,6 +37,10 @@ public class Manger_Word extends Verb implements Conjugable, Grammar {
 				break;
 			}
 		}
+		
+		if(tense.equals("infinitive")){
+			return "manger";
+		}
 
 		return null;
 	}
@@ -52,6 +56,7 @@ public class Manger_Word extends Verb implements Conjugable, Grammar {
 			return true;
 		}
 		else{
+			this.setWord(this.conjugate(0, "infinitive"));
 			return false;
 		}
 	}
