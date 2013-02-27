@@ -1,5 +1,7 @@
 package com.alexismorin.laps.words;
 
+import com.alexismorin.laps.Sentence;
+
 import processing.core.PVector;
 
 public class Word extends Tile implements Comparable<Word>{
@@ -33,6 +35,7 @@ public class Word extends Tile implements Comparable<Word>{
 
 	public boolean do_grammar(Word prevWord, Word nextWord) {
 		/**
+		 * @Deprecated
 		 * Override this as soon as possible.
 		 */
 		return true;
@@ -44,6 +47,11 @@ public class Word extends Tile implements Comparable<Word>{
 	}
 
 	public boolean is_last_word() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean do_grammar(Sentence sentence, int i) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -72,15 +72,15 @@ public class Scene {
 		Sentence sentence = board.makeSentence();
 		sentence.checkSentenceGrammar();
 
+		int indexInSentence = -1;
 		for (int i = 0; i < board.words.size(); i++) {
 			Word w = board.words.get(i);
 
 			parent.stroke(0);// paint word outline the default color: black
 
 			if (w.snapped) {
-				Word nextW = board.words.getNextSnapped(i);
-				Word prevW = board.words.getPrevSnapped(i);
-				if (w.do_grammar(prevW, nextW)) {
+				indexInSentence++;
+				if (w.do_grammar(sentence, indexInSentence)) {
 					parent.stroke(38, 133, 36);// paint it green for correct
 												// grammar
 					// draw a bezier, like a bawss
@@ -101,8 +101,8 @@ public class Scene {
 			parent.fill(0);
 			parent.text(w.getWord(), w.pos.x + 10, w.pos.y + Config.wordSize
 					/ 2);
-			// parent.text(String.valueOf(i), w.pos.x + 10, w.pos.y +
-			// Config.wordSize / 3);
+			
+			parent.text(sentence.sentenceWords.size(), 10, parent.height - 50);
 
 		}
 		// draw the Sentence

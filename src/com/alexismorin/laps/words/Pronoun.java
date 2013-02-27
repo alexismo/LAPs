@@ -1,5 +1,6 @@
 package com.alexismorin.laps.words;
 
+import com.alexismorin.laps.Sentence;
 import com.alexismorin.laps.grammar.Grammar;
 import com.alexismorin.laps.grammar.LinkTo;
 import com.alexismorin.laps.grammar.Subjecting;
@@ -17,13 +18,13 @@ public abstract class Pronoun extends Word implements Subjecting, Grammar, LinkT
 	}
 
 	@Override
-	public boolean do_grammar(Word prevWord, Word nextWord) {
-		if (is_subject(nextWord)){
+	public boolean do_grammar(Sentence sentence, int i) {
+		Word nextWord = sentence.getNextWord(i);
+		if(is_subject(nextWord)){
 			grammarOK = true;
 			linkToThis = nextWord;
 			return true;
-		}
-		else{
+		}else{
 			grammarOK = false;
 			linkToThis = null;
 			return false;

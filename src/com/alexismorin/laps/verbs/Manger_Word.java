@@ -1,5 +1,6 @@
 package com.alexismorin.laps.verbs;
 
+import com.alexismorin.laps.Sentence;
 import com.alexismorin.laps.grammar.Conjugable;
 import com.alexismorin.laps.grammar.Grammar;
 import com.alexismorin.laps.grammar.GrammaticalPerson;
@@ -46,11 +47,13 @@ public class Manger_Word extends Verb implements Conjugable, Grammar {
 	}
 
 	@Override
-	public boolean do_grammar(Word previousWord, Word nextWord) {
+	public boolean do_grammar(Sentence sentence, int i) {
 		int gramPerson;
+		Word prevWord = sentence.getPrevWord(i);
 		
-		if (previousWord instanceof GrammaticalPerson){
-			gramPerson = ((GrammaticalPerson) previousWord).person();
+		//previous word should be of a grammatical person and be a potential subject
+		if (prevWord instanceof GrammaticalPerson && prevWord instanceof Subjecting){
+			gramPerson = ((GrammaticalPerson) prevWord).person();
 			
 			this.setWord(this.conjugate(gramPerson, "present"));
 			return true;
@@ -60,17 +63,4 @@ public class Manger_Word extends Verb implements Conjugable, Grammar {
 			return false;
 		}
 	}
-
-	@Override
-	public boolean is_first_word() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean is_last_word() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

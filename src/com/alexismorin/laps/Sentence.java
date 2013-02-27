@@ -17,6 +17,8 @@ public class Sentence {
 	
 	public void setWords(ArrayList<Word> newWords){
 		sentenceWords.clear();
+		sentenceWords = new WordList();
+		
 		sentenceWords.addAll(newWords);
 	}
 	
@@ -54,8 +56,8 @@ public class Sentence {
 	}
 	
 	public Word getNextWord(int i) {
-		if(i <= sentenceWords.size()-1){
-			return sentenceWords.get(i);
+		if(i < sentenceWords.size()-1){
+			return sentenceWords.get(i+1);
 		}else{
 			return null;
 		}
@@ -63,7 +65,7 @@ public class Sentence {
 	
 	public Word getPrevWord(int i) {
 		if(i > 0){
-			return sentenceWords.get(i);
+			return sentenceWords.get(i-1);
 		}else{
 			return null;
 		}

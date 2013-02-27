@@ -1,5 +1,6 @@
 package com.alexismorin.laps.words;
 
+import com.alexismorin.laps.Sentence;
 import com.alexismorin.laps.grammar.Grammar;
 import com.alexismorin.laps.grammar.IsArticle;
 import com.alexismorin.laps.grammar.LinkTo;
@@ -19,11 +20,12 @@ public class Article extends Word implements Grammar, IsArticle, LinkTo{
 	}
 	
 	@Override
-	public boolean do_grammar(Word previousWord, Word nextWord) {
-		if(nextWord != null){
-			if(is_article(nextWord)){
+	public boolean do_grammar(Sentence s, int i) {
+		Word nWord = s.getNextWord(i);
+		if(nWord != null){
+			if(is_article(nWord)){
 				grammarOK = true;
-				linkToThis = nextWord;
+				linkToThis = nWord;
 				return true;
 			}else{
 				grammarOK = false;
