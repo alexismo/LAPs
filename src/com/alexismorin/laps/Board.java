@@ -26,12 +26,14 @@ public class Board {
 	PApplet parent;
 	WordList words;
 	Dragger dragger;
+	Sentence sentence;
 
 	public Board(PApplet p) {
 		super();
 		this.parent = p;
 		this.words = new WordList();
 		dragger = new Dragger(this, p);
+		this.sentence = new Sentence();
 	}
 
 	public void makeWords() {
@@ -50,47 +52,28 @@ public class Board {
 		addWord(new Pomme_Word());
 	}
 
-	public void addWord(String word) {
-		words.add(new Word(word));
-
-		// words.add(new Word(new PVector(100 * words.size() + 20, 100), word));
-	}
-
 	public void addWord(Word w) {
 		words.add(w);
 	}
 
 	public void sortSentence() {
 		words.sort();
-
-		/*
-		 * sentenceWords.clear(); for(int i = 0; i < words.size(); i++){ Word w
-		 * = words.get(i); if(w.snapped) sentenceWords.add(w); }
-		 */
 	}
 
-	public String getSentence() {
-		String theSentence = "";
+	public String makeSentence() {
+		ArrayList<Word> newSentence = new ArrayList<Word>();
+		
 		for (int i = 0; i < words.size(); i++) {
 			Word w = words.get(i);
 
 			if (w.snapped) {
-				String s = w.getWord();
-
-				if (i == 0) {// capitalize
-					s = WordUtils.capitalize(s);
-				}
-				if (i == words.size() - 1) {// add period
-					theSentence += s;
-					theSentence += ".";
-				} else {
-					theSentence += s;
-					theSentence += " ";
-				}
+				newSentence.add(w);
 			}
 		}
+		
+		this.sentence.setWords(newSentence);
 
-		return theSentence;
+		return this.sentence.getSentence();
 	}
 
 	public void onMouseEvent(MouseEvent e) {

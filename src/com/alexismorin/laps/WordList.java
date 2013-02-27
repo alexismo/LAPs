@@ -16,6 +16,10 @@ public class WordList{
 		this.words.add(w);
 	}
 	
+	public void addAll(ArrayList<Word> newWords){
+		this.words.addAll(newWords);
+	}
+	
 	public int size(){
 		return words.size();
 	}
@@ -50,5 +54,9 @@ public class WordList{
 		}
 		
 		return null;
+	}
+
+	public void clear() {
+		this.words.clear();
 	}
 }

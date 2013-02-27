@@ -96,15 +96,9 @@ public class Scene {
 			// Config.wordSize / 3);
 
 			// draw the Sentence
-			parent.text(board.getSentence(), parent.width / 2,
+			parent.text(board.makeSentence(), parent.width / 2,
 					parent.height - 100);
 		}
-	}
-
-	private boolean checkNextWordIs(int index, Class checkForClass) {
-		Word w = board.words.get(index);
-
-		return w.getClass().equals(checkForClass.getClass());
 	}
 
 	void onMouseEvent(MouseEvent e) {

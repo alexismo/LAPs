@@ -10,12 +10,11 @@ public class LAPs extends PApplet {
 	Scene scene;
 	Board board;
 
-	/*
+	
 	 public static void main(String args[]) { 
 		 // PApplet.main(new String[] {"--present", "MyProcessingSketch" }); 
-		 PApplet.main(new String[] { "","LAPs" });
+		 PApplet.main("com.alexismorin.laps.LAPs");//allows the application to be run as a regular Java Application
 	 }
-	 */
 
 	public void setup() {
 		size(Config.MAPWIDTH, Config.MAPHEIGHT);
