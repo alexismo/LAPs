@@ -4,6 +4,7 @@ import com.alexismorin.laps.grammar.Conjugable;
 import com.alexismorin.laps.grammar.Grammar;
 import com.alexismorin.laps.grammar.IsArticle;
 import com.alexismorin.laps.grammar.LinkTo;
+import com.alexismorin.laps.grammar.Pluralizable;
 import com.alexismorin.laps.grammar.Subjecting;
 import com.alexismorin.laps.mouse.MouseEvent;
 import com.alexismorin.laps.words.Article;
@@ -34,9 +35,16 @@ public class Scene {
 								// simplifies instanciation
 				w.pos = new PVector(100 * (i + 1) + 20, 100);
 			}
-			
-			if(!w.snapped && w instanceof Conjugable){
-				w.setWord(((Conjugable)w).conjugate(0, "infinitive"));
+
+			if (!w.snapped) {//change the words back to singular / infinitive forms
+				
+				if (w instanceof Conjugable) {
+					w.setWord(((Conjugable) w).conjugate(0, "infinitive"));
+				}
+				
+				if (w instanceof Pluralizable) {
+					w.setWord(((Pluralizable) w).pluralize(1));
+				}
 			}
 			
 		}
@@ -73,7 +81,8 @@ public class Scene {
 				Word nextW = board.words.getNextSnapped(i);
 				Word prevW = board.words.getPrevSnapped(i);
 				if (w.do_grammar(prevW, nextW)) {
-					parent.stroke(38, 133, 36);// paint it green for correct grammar
+					parent.stroke(38, 133, 36);// paint it green for correct
+												// grammar
 					// draw a bezier, like a bawss
 					if (w instanceof LinkTo) {
 						drawBezier(w, ((LinkTo) w).linkToWord());
