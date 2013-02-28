@@ -9,6 +9,7 @@ import com.alexismorin.laps.grammar.GrammaticalNumber;
 import com.alexismorin.laps.grammar.GrammaticalPerson;
 import com.alexismorin.laps.grammar.IsArticle;
 import com.alexismorin.laps.grammar.Pluralizable;
+import com.alexismorin.laps.words.Article;
 import com.alexismorin.laps.words.Noun;
 import com.alexismorin.laps.words.Word;
 
@@ -43,7 +44,7 @@ public class Pomme_Word extends Noun implements Actionnable, Pluralizable, Gramm
 	public boolean do_grammar(Sentence s, int i) {
 		int gramNumber;
 		Word pWord = s.getPrevWord(i);
-		if (pWord instanceof GrammaticalNumber){
+		if (pWord instanceof GrammaticalNumber && (pWord instanceof Article /* pWord instanceof Adjective*/)){
 			gramNumber = ((GrammaticalNumber) pWord).number();
 			
 			this.setWord(this.pluralize(gramNumber));

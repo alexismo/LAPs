@@ -5,31 +5,38 @@ import java.util.ArrayList;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.alexismorin.laps.grammar.Grammar;
+import com.alexismorin.laps.grammar.errors.NoVerbError;
+import com.alexismorin.laps.grammar.errors.SentenceError;
+import com.alexismorin.laps.grammar.errors.StartsWithError;
+import com.alexismorin.laps.words.Pronoun;
+import com.alexismorin.laps.words.Verb;
 import com.alexismorin.laps.words.Word;
 
 public class Sentence {
 	WordList sentenceWords;
-	
-	
-	public Sentence(){
+	boolean hasErrors = false;
+	ArrayList<SentenceError> errors;
+
+	public Sentence() {
+		errors = new ArrayList<SentenceError>();
 		sentenceWords = new WordList();
 	}
-	
-	public void setWords(ArrayList<Word> newWords){
+
+	public void setWords(ArrayList<Word> newWords) {
 		sentenceWords.clear();
 		sentenceWords = new WordList();
-		
+
 		sentenceWords.addAll(newWords);
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		String sentence = "";
-		
+
 		for (int i = 0; i < sentenceWords.size(); i++) {
 			Word w = sentenceWords.get(i);
 			String s = w.getWord();
-			
+
 			if (i == 0) {// capitalize
 				s = WordUtils.capitalize(s);
 			}
@@ -39,34 +46,59 @@ public class Sentence {
 				sentence += s + " ";// add a space
 			}
 		}
-		
+
 		return sentence;
 	}
-	
-	public void checkSentenceGrammar(){
+
+	public void checkSentenceGrammar() {
+		hasErrors = false;
+		errors.clear();
+		boolean hasVerb = false;
+
 		for (int i = 0; i < sentenceWords.size(); i++) {
 			Word w = sentenceWords.get(i);
-			if(w instanceof Grammar && w.snapped){
+			if (w instanceof Grammar && w.snapped) {
 				Word prevW = getPrevWord(i);
 				Word nextW = getNextWord(i);
-				
-				w.grammarOK = w.do_grammar(prevW, nextW);
+
+				// start checking for sentence-wide errors
+				if (i == 0) {// for starting word
+					if (w instanceof Pronoun /* && w instanceof Time */) {
+					} else {
+						errors.add(new StartsWithError());
+					}
+				}
+
+				if (w instanceof Verb && !hasVerb) {
+					hasVerb = true;
+				}
+
 			}
 		}
+		
+		if (!hasVerb) {
+			NoVerbError e = new NoVerbError();
+			if (!errors.contains(e))
+				errors.add(e);
+		}
+
+		if (errors.size() > 0) {
+			hasErrors = true;
+		}
 	}
-	
+
 	public Word getNextWord(int i) {
-		if(i < sentenceWords.size()-1){
-			return sentenceWords.get(i+1);
-		}else{
+		if (i < sentenceWords.size() - 1) {
+			return sentenceWords.get(i + 1);
+		} else {
 			return null;
 		}
 	}
-	
+
 	public Word getPrevWord(int i) {
-		if(i > 0){
-			return sentenceWords.get(i-1);
-		}else{
+		if (i > 0) {
+			return sentenceWords.get(i - 1);
+		} else {
 			return null;
 		}
 	}

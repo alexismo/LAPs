@@ -6,6 +6,7 @@ import com.alexismorin.laps.grammar.IsArticle;
 import com.alexismorin.laps.grammar.LinkTo;
 import com.alexismorin.laps.grammar.Pluralizable;
 import com.alexismorin.laps.grammar.Subjecting;
+import com.alexismorin.laps.grammar.errors.SentenceError;
 import com.alexismorin.laps.mouse.MouseEvent;
 import com.alexismorin.laps.words.Article;
 import com.alexismorin.laps.words.Pronoun;
@@ -103,7 +104,16 @@ public class Scene {
 					/ 2);
 			
 			parent.text(sentence.sentenceWords.size(), 10, parent.height - 50);
-
+		}
+		
+		//draw the errors (global sentence validation)
+		if(sentence.hasErrors){
+			parent.fill(205, 24, 24);
+			//draw the error
+			for (int i = 0; i < sentence.errors.size(); i++) {
+				SentenceError e = sentence.errors.get(i);
+				parent.text(e.getMessage(), 20, (float) (parent.height*0.75+((i+1)*30)));
+			}
 		}
 		// draw the Sentence
 		parent.text(board.getSentenceString(), parent.width / 2,
