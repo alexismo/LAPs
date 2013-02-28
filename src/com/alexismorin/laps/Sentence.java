@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.alexismorin.laps.grammar.Grammar;
-import com.alexismorin.laps.grammar.errors.NoVerbError;
+import com.alexismorin.laps.grammar.errors.NoVerbInSentenceError;
 import com.alexismorin.laps.grammar.errors.SentenceError;
 import com.alexismorin.laps.grammar.errors.StartsWithError;
 import com.alexismorin.laps.words.Pronoun;
@@ -77,7 +77,7 @@ public class Sentence {
 		}
 		
 		if (!hasVerb) {
-			NoVerbError e = new NoVerbError();
+			NoVerbInSentenceError e = new NoVerbInSentenceError();
 			if (!errors.contains(e))
 				errors.add(e);
 		}

@@ -1,21 +1,28 @@
 package com.alexismorin.laps.words;
 
+import java.util.ArrayList;
+
 import com.alexismorin.laps.Sentence;
+import com.alexismorin.laps.grammar.errors.WordError;
+import com.alexismorin.laps.grammar.errors.WordErrorList;
 
 import processing.core.PVector;
 
 public class Word extends Tile implements Comparable<Word>{
 
 	private String word;
-	public boolean grammarOK;
+	//public ArrayList<WordError> errors;
+	public WordErrorList errors;
 
 	public Word(PVector pos, String word) {
 		super(pos);
 		this.word = word;
+		this.errors = new WordErrorList();
 	}
 
 	public Word(String word) {
 		this.word = word;
+		this.errors = new WordErrorList();
 	}
 	
 	public String getWord(){

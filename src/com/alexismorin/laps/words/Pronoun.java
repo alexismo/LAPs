@@ -4,6 +4,7 @@ import com.alexismorin.laps.Sentence;
 import com.alexismorin.laps.grammar.Grammar;
 import com.alexismorin.laps.grammar.LinkTo;
 import com.alexismorin.laps.grammar.Subjecting;
+import com.alexismorin.laps.grammar.errors.NoVerbError;
 
 public abstract class Pronoun extends Word implements Subjecting, Grammar, LinkTo {
 	Word linkToThis;
@@ -19,21 +20,24 @@ public abstract class Pronoun extends Word implements Subjecting, Grammar, LinkT
 
 	@Override
 	public boolean do_grammar(Sentence sentence, int i) {
+		this.errors.clear();
 		Word nextWord = sentence.getNextWord(i);
+		
 		if(is_subject(nextWord)){
-			grammarOK = true;
 			linkToThis = nextWord;
-			return true;
 		}else{
-			grammarOK = false;
+			this.errors.add(new NoVerbError());
 			linkToThis = null;
-			return false;
 		}
+		
+		if(this.errors.size() == 0)	
+			return true;
+		else
+			return false;
 	}
 	
 	@Override
 	public Word linkToWord(){
-		
 		return linkToThis;
 	}
 }

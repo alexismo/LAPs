@@ -7,6 +7,7 @@ import com.alexismorin.laps.grammar.LinkTo;
 import com.alexismorin.laps.grammar.Pluralizable;
 import com.alexismorin.laps.grammar.Subjecting;
 import com.alexismorin.laps.grammar.errors.SentenceError;
+import com.alexismorin.laps.grammar.errors.WordError;
 import com.alexismorin.laps.mouse.MouseEvent;
 import com.alexismorin.laps.words.Article;
 import com.alexismorin.laps.words.Pronoun;
@@ -37,17 +38,18 @@ public class Scene {
 				w.pos = new PVector(100 * (i + 1) + 20, 100);
 			}
 
-			if (!w.snapped) {//change the words back to singular / infinitive forms
-				
+			if (!w.snapped) {// change the words back to singular / infinitive
+								// forms
+
 				if (w instanceof Conjugable) {
 					w.setWord(((Conjugable) w).conjugate(0, "infinitive"));
 				}
-				
+
 				if (w instanceof Pluralizable) {
 					w.setWord(((Pluralizable) w).pluralize(1));
 				}
 			}
-			
+
 		}
 	}
 
@@ -92,27 +94,41 @@ public class Scene {
 				} else {
 					parent.stroke(205, 24, 24);// paint it red for bad grammar
 				}
+			}else{
+				if(w.errors.size() > 0){
+					w.errors.clear();
+				}
 			}
 
 			// finish drawing the tile
 			parent.fill(200);
 			parent.rect(w.pos.x, w.pos.y, Config.wordSize, Config.wordSize);
 
+			if (w.errors.size() > 0) {
+				parent.fill(205, 24, 24);
+				for (int j = 0; j < w.errors.size(); j++) {
+					WordError e = w.errors.get(j);
+					
+					parent.text(e.getErrorMsg(), w.pos.x, w.pos.y + Config.wordSize + (j+1)*20);
+				}
+			}
+
 			// draw the words from the tiles
 			parent.fill(0);
 			parent.text(w.getWord(), w.pos.x + 10, w.pos.y + Config.wordSize
 					/ 2);
-			
+
 			parent.text(sentence.sentenceWords.size(), 10, parent.height - 50);
 		}
-		
-		//draw the errors (global sentence validation)
-		if(sentence.hasErrors){
+
+		// draw the errors (global sentence validation)
+		if (sentence.hasErrors) {
 			parent.fill(205, 24, 24);
-			//draw the error
+			// draw the error
 			for (int i = 0; i < sentence.errors.size(); i++) {
 				SentenceError e = sentence.errors.get(i);
-				parent.text(e.getMessage(), 20, (float) (parent.height*0.75+((i+1)*30)));
+				parent.text(e.getMessage(), 20,
+						(float) (parent.height * 0.75 + ((i + 1) * 30)));
 			}
 		}
 		// draw the Sentence

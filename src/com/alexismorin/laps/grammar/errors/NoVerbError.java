@@ -1,8 +1,10 @@
 package com.alexismorin.laps.grammar.errors;
 
-public class NoVerbError extends SentenceError{
+import com.alexismorin.laps.grammar.errors.WordError;
 
+public class NoVerbError extends WordError {
+	
 	public NoVerbError(){
-		this.message = "Try using a verb in your sentence.";
+		this.message = "I need a verb.";
 	}
 }

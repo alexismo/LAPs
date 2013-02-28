@@ -48,6 +48,7 @@ public class Board {
 		addWord(new Tu_Word());
 		addWord(new Nous_Word());
 		addWord(new La_Word());
+		addWord(new Le_Word());
 		addWord(new Les_Word());
 		addWord(new Pomme_Word());
 	}
