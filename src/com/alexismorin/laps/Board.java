@@ -11,9 +11,10 @@ import processing.core.PVector;
 import com.alexismorin.laps.mouse.MouseEvent;
 
 import com.alexismorin.laps.words.pronouns.*;
-import com.alexismorin.laps.verbs.*;
-import com.alexismorin.laps.articles.*;
-import com.alexismorin.laps.nouns.*;
+import com.alexismorin.laps.words.verbs.*;
+import com.alexismorin.laps.words.adverbs.Demain_Word;
+import com.alexismorin.laps.words.articles.*;
+import com.alexismorin.laps.words.nouns.*;
 
 import com.alexismorin.laps.words.Article;
 import com.alexismorin.laps.words.Noun;
@@ -51,6 +52,8 @@ public class Board {
 		addWord(new Le_Word());
 		addWord(new Les_Word());
 		addWord(new Pomme_Word());
+		addWord(new Demain_Word());
+		addWord(new Elles_Word());
 	}
 
 	public void addWord(Word w) {

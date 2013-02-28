@@ -131,6 +131,7 @@ public class Scene {
 						(float) (parent.height * 0.75 + ((i + 1) * 30)));
 			}
 		}
+		
 		// draw the Sentence
 		parent.text(board.getSentenceString(), parent.width / 2,
 				parent.height - 100);

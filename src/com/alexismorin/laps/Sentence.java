@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.alexismorin.laps.grammar.Grammar;
+import com.alexismorin.laps.grammar.TimeIndicator;
 import com.alexismorin.laps.grammar.errors.NoVerbInSentenceError;
 import com.alexismorin.laps.grammar.errors.SentenceError;
 import com.alexismorin.laps.grammar.errors.StartsWithError;
@@ -16,10 +17,12 @@ public class Sentence {
 	WordList sentenceWords;
 	boolean hasErrors = false;
 	ArrayList<SentenceError> errors;
+	String tense;
 
 	public Sentence() {
 		errors = new ArrayList<SentenceError>();
 		sentenceWords = new WordList();
+		tense = "present";
 	}
 
 	public void setWords(ArrayList<Word> newWords) {
@@ -27,6 +30,10 @@ public class Sentence {
 		sentenceWords = new WordList();
 
 		sentenceWords.addAll(newWords);
+	}
+	
+	public int size(){
+		return sentenceWords.size();
 	}
 
 	@Override
@@ -63,7 +70,7 @@ public class Sentence {
 
 				// start checking for sentence-wide errors
 				if (i == 0) {// for starting word
-					if (w instanceof Pronoun /* && w instanceof Time */) {
+					if (w instanceof Pronoun || w instanceof TimeIndicator ) {
 					} else {
 						errors.add(new StartsWithError());
 					}
@@ -72,7 +79,10 @@ public class Sentence {
 				if (w instanceof Verb && !hasVerb) {
 					hasVerb = true;
 				}
-
+				
+				if(w instanceof TimeIndicator){
+					tense = ((TimeIndicator) w).getTense();
+				}
 			}
 		}
 		
@@ -101,5 +111,20 @@ public class Sentence {
 		} else {
 			return null;
 		}
+	}
+
+	public String findTimeIndicator() {
+		for (int i = 0; i < sentenceWords.size(); i++) {
+			Word w = sentenceWords.get(i);
+			if(w instanceof TimeIndicator){
+				return ((TimeIndicator)w).getTense();
+			}
+		}
+		return "present";//default value
+	}
+	
+	public void /*Word*/ findByType(){
+		//http://stackoverflow.com/questions/4516609/java-reflection-and-interface-as-parameter
+		
 	}
 }

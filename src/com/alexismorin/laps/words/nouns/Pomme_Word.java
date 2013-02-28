@@ -1,18 +1,24 @@
-package com.alexismorin.laps.nouns;
+package com.alexismorin.laps.words.nouns;
 
 import java.util.ArrayList;
 
 import com.alexismorin.laps.Sentence;
 import com.alexismorin.laps.grammar.Actionnable;
+import com.alexismorin.laps.grammar.GrammaticalGender;
 import com.alexismorin.laps.grammar.GrammaticalNumber;
+import com.alexismorin.laps.grammar.GrammaticalPerson;
+import com.alexismorin.laps.grammar.IsArticle;
 import com.alexismorin.laps.grammar.Pluralizable;
+import com.alexismorin.laps.grammar.errors.GrammaticalGenderError;
+import com.alexismorin.laps.grammar.errors.NoArticleError;
+import com.alexismorin.laps.words.Article;
 import com.alexismorin.laps.words.Noun;
 import com.alexismorin.laps.words.Word;
 
-public class Apple_Word extends Noun implements Actionnable, Pluralizable{
+public class Pomme_Word extends Noun implements Actionnable, Pluralizable, GrammaticalGender{
 
-	public Apple_Word() {
-		super("apple");
+	public Pomme_Word() {
+		super("pomme");
 	}
 
 	@Override
@@ -25,29 +31,19 @@ public class Apple_Word extends Noun implements Actionnable, Pluralizable{
 		
 		return categories;
 	}
-	
+
 	@Override
 	public String pluralize(int number) {
 		if(number > 1){
-			this.setWord("apple");
+			this.setWord("pommes");
 		}else{
-			this.setWord("apples");
+			this.setWord("pomme");
 		}
 		return this.getWord();
 	}
 
 	@Override
-	public boolean do_grammar(Sentence s, int i) {
-		int gramNumber;
-		Word pWord = s.getPrevWord(i);
-		if (pWord instanceof GrammaticalNumber){
-			gramNumber = ((GrammaticalNumber) pWord).number();
-			
-			this.setWord(this.pluralize(gramNumber));
-			return true;
-		}
-		
-		return false;
-		
+	public String gender() {
+		return "feminin";
 	}
 }

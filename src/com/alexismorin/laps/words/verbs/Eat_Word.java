@@ -1,4 +1,4 @@
-package com.alexismorin.laps.verbs;
+package com.alexismorin.laps.words.verbs;
 
 import com.alexismorin.laps.words.Verb;
 

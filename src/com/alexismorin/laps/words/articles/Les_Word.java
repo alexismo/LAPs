@@ -1,4 +1,4 @@
-package com.alexismorin.laps.articles;
+package com.alexismorin.laps.words.articles;
 
 import com.alexismorin.laps.grammar.Definiteness;
 import com.alexismorin.laps.grammar.GrammaticalGender;
@@ -7,10 +7,10 @@ import com.alexismorin.laps.grammar.IsArticle;
 import com.alexismorin.laps.words.Article;
 import com.alexismorin.laps.words.Word;
 
-public class Le_Word extends Article implements Definiteness, GrammaticalGender, GrammaticalNumber {
+public class Les_Word extends Article implements Definiteness, GrammaticalNumber {
 
-	public Le_Word() {
-		super("le");
+	public Les_Word() {
+		super("les");
 	}
 
 	@Override
@@ -19,12 +19,7 @@ public class Le_Word extends Article implements Definiteness, GrammaticalGender,
 	}
 
 	@Override
-	public String gender() {
-		return "masculin";
-	}
-
-	@Override
 	public int number() {
-		return 1;
+		return 3;
 	}
 }

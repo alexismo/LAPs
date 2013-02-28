@@ -1,4 +1,4 @@
-package com.alexismorin.laps.articles;
+package com.alexismorin.laps.words.articles;
 
 import com.alexismorin.laps.grammar.Definiteness;
 import com.alexismorin.laps.grammar.IsArticle;
