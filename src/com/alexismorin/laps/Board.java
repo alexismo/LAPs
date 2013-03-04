@@ -13,6 +13,7 @@ import com.alexismorin.laps.mouse.MouseEvent;
 import com.alexismorin.laps.words.pronouns.*;
 import com.alexismorin.laps.words.verbs.*;
 import com.alexismorin.laps.words.adverbs.Demain_Word;
+import com.alexismorin.laps.words.adverbs.Yesterday_Word;
 import com.alexismorin.laps.words.articles.*;
 import com.alexismorin.laps.words.nouns.*;
 
@@ -39,11 +40,16 @@ public class Board {
 
 	public void makeWords() {
 		// English things
-		/*
-		 * addWord( new Eat_Word() ); addWord( new I_Word() ); addWord( new
-		 * The_Word() ); addWord( new Apple_Word() );
-		 */
+		
+		addWord( new Eat_Word() ); 
+		addWord( new I_Word() ); 
+		addWord( new The_Word() ); 
+		addWord( new Apple_Word() );
+		addWord( new Yesterday_Word() );
+		addWord( new She_Word());
+		
 		// French things
+		/*
 		addWord(new Manger_Word());
 		addWord(new Je_Word());
 		addWord(new Tu_Word());
@@ -54,6 +60,7 @@ public class Board {
 		addWord(new Pomme_Word());
 		addWord(new Demain_Word());
 		addWord(new Elles_Word());
+		*/
 	}
 
 	public void addWord(Word w) {

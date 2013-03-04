@@ -29,9 +29,9 @@ public class Apple_Word extends Noun implements Actionnable, Pluralizable{
 	@Override
 	public String pluralize(int number) {
 		if(number > 1){
-			this.setWord("apple");
-		}else{
 			this.setWord("apples");
+		}else{
+			this.setWord("apple");
 		}
 		return this.getWord();
 	}
