@@ -28,6 +28,14 @@ public class Dragger {
 	    }
 	  }
 	  
+	  public Word getTargetWord(){
+		  if(target != -1){
+			  return parentBoard.words.get(target);
+		  }else{
+			  return null;
+		  }
+	  }
+	  
 	  public void onMouseEvent(MouseEvent e){
 	      if(e.type == Config.MOUSE_PRESSED){
 	        mouseDown = true;

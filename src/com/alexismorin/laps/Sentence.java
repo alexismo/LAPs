@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.commons.lang3.text.WordUtils;
 
 import com.alexismorin.laps.grammar.Grammar;
+import com.alexismorin.laps.grammar.IsSuffix;
 import com.alexismorin.laps.grammar.TimeIndicator;
 import com.alexismorin.laps.grammar.errors.NoVerbInSentenceError;
 import com.alexismorin.laps.grammar.errors.SentenceError;
@@ -47,6 +48,17 @@ public class Sentence {
 			if (i == 0) {// capitalize
 				s = WordUtils.capitalize(s);
 			}
+			
+			if(w instanceof IsSuffix && i > 0){//can't be the 1st word
+				if(((IsSuffix)w).isSuffix()){
+					//if it's a suffix, remove the previous space
+					String charToDel = (String) sentence.substring(sentence.length()-1);
+					if(charToDel.equals(" ")){
+						sentence = (String) sentence.substring(0, sentence.length()-1);
+					}
+				}
+			}
+			
 			if (i == sentenceWords.size() - 1) {
 				sentence += s + ".";// add period
 			} else {

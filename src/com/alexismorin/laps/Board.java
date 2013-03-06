@@ -40,13 +40,22 @@ public class Board {
 
 	public void makeWords() {
 		// English things
-		
+		/*
 		addWord( new Eat_Word() ); 
-		addWord( new I_Word() ); 
+		addWord( new I_Word() );
+		addWord( new You_Word() );
 		addWord( new The_Word() ); 
 		addWord( new Apple_Word() );
 		addWord( new Yesterday_Word() );
 		addWord( new She_Word());
+		*/
+		
+		//Swedish things
+		addWord( new Äta_Word());
+		addWord( new Jag_Word());
+		addWord( new Du_Word());
+		addWord( new Tomat_Word());
+		addWord( new En_Word());
 		
 		// French things
 		/*

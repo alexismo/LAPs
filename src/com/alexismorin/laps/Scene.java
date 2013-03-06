@@ -3,6 +3,7 @@ package com.alexismorin.laps;
 import com.alexismorin.laps.grammar.Conjugable;
 import com.alexismorin.laps.grammar.Grammar;
 import com.alexismorin.laps.grammar.IsArticle;
+import com.alexismorin.laps.grammar.IsSuffix;
 import com.alexismorin.laps.grammar.LinkTo;
 import com.alexismorin.laps.grammar.Pluralizable;
 import com.alexismorin.laps.grammar.Subjecting;
@@ -88,9 +89,19 @@ public class Scene {
 												// grammar
 					// draw a bezier, like a bawss
 					if (w instanceof LinkTo) {
-						drawBezier(w, ((LinkTo) w).linkToWord());
+						if(((LinkTo) w).linkToWord() != null){
+							Word linkTo =((LinkTo) w).linkToWord(); 
+							drawBezier(w, linkTo);
+							
+							if(w instanceof IsSuffix){
+								if(((IsSuffix)w).isSuffix() && board.dragger.getTargetWord() != w){
+									w.pos.x = linkTo.pos.x+Config.wordSize;
+									w.pos.y = linkTo.pos.y;
+								}
+							}
+							
+						}
 					}
-
 				} else {
 					parent.stroke(205, 24, 24);// paint it red for bad grammar
 				}
